@@ -88,11 +88,17 @@ Java_com_kyant_taglib_TagLib_getMetadataPropertyValues(
     }
 
     const auto propertyMap = f.properties();
-    const auto valueList = propertyMap.find(TagLib::String(propertyName))->second;
-    jobjectArray result = env->NewObjectArray(static_cast<jsize>(valueList.size()),
+    const auto valueList = propertyMap.find(TagLib::String(propertyName));
+    if (valueList == propertyMap.end()) {
+        env->ReleaseStringUTFChars(property_name, propertyName);
+        free(path);
+        return env->NewObjectArray(0, stringClass, nullptr);
+    }
+
+    jobjectArray result = env->NewObjectArray(static_cast<jsize>(valueList->second.size()),
                                               stringClass, nullptr);
     int i = 0;
-    for (const auto &value: valueList) {
+    for (const auto &value: valueList->second) {
         jstring jValue = env->NewStringUTF(value.toCString(true));
         env->SetObjectArrayElement(result, i, jValue);
         env->DeleteLocalRef(jValue);

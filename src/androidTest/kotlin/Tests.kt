@@ -42,6 +42,9 @@ class Tests {
             val artists = TagLib.getMetadataPropertyValues(fd.dup().detachFd(), "ARTIST")!!
             Assert.assertEquals("Blue Monday FM", artists.single())
 
+            val lyrics = TagLib.getMetadataPropertyValues(fd.dup().detachFd(), "LYRICS")!!
+            Assert.assertEquals(0, lyrics.size)
+
             // Save metadata
 
             val newTitle = "Bee Moved (Remix)"
