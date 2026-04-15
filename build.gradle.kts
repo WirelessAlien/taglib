@@ -1,15 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    id("com.vanniktech.maven.publish") version "0.34.0"
+    id("com.vanniktech.maven.publish") version "0.36.0"
 }
 
 android {
     namespace = "com.kyant.taglib"
-    compileSdk {
-        version = release(36)
-    }
-    buildToolsVersion = "36.1.0"
+    compileSdk = 37
     ndkVersion = "29.0.14206865"
 
     defaultConfig {
@@ -28,6 +24,10 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
     externalNativeBuild {
         cmake {
             path("src/main/cpp/CMakeLists.txt")
@@ -38,8 +38,8 @@ android {
         checkReleaseBuilds = false
     }
 }
+
 kotlin {
-    jvmToolchain(21)
     explicitApi()
 }
 
@@ -52,7 +52,7 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates("io.github.kyant0", "taglib", "1.0.5")
+    coordinates("io.github.kyant0", "taglib", "1.0.6")
 
     pom {
         name.set("TagLib")

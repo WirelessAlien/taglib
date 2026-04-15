@@ -49,6 +49,7 @@
 #include "wavpackfile.h"
 #include "dsffile.h"
 #include "dsdifffile.h"
+#include "matroskafile.h"
 
 using namespace TagLib;
 
@@ -110,6 +111,8 @@ namespace TagLibExt {
             file = new DSF::File(stream, readAudioProperties, audioPropertiesStyle);
         else if (ext == "DFF" || ext == "DSDIFF")
             file = new DSDIFF::File(stream, readAudioProperties, audioPropertiesStyle);
+        else if(ext == "MKA" || ext == "MKV" || ext == "WEBM")
+            file = new Matroska::File(stream, readAudioProperties, audioPropertiesStyle);
 
         // if file is not valid, leave it to content-based detection.
 
@@ -154,6 +157,8 @@ namespace TagLibExt {
             file = new DSF::File(stream, readAudioProperties, audioPropertiesStyle);
         else if (DSDIFF::File::isSupported(stream))
             file = new DSDIFF::File(stream, readAudioProperties, audioPropertiesStyle);
+        else if(Matroska::File::isSupported(stream))
+            file = new Matroska::File(stream, readAudioProperties, audioPropertiesStyle);
 
         // isSupported() only does a quick check, so double check the file here.
 

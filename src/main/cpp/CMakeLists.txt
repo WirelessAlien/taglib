@@ -5,8 +5,6 @@ project(taglib)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -fvisibility=hidden -flto -fdata-sections -ffunction-sections -fomit-frame-pointer")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fvisibility=hidden -flto -fdata-sections -ffunction-sections -fomit-frame-pointer")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -flto -Wl,--exclude-libs,ALL -Wl,--gc-sections -s -Wl,--pack-dyn-relocs=android -Wl,--build-id=none")
-
-set(CMAKE_C_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
 
 set(VISIBILITY_HIDDEN ON)
@@ -23,6 +21,7 @@ include_directories(
         taglib/taglib/ogg
         taglib/taglib/ogg/flac
         taglib/taglib/flac
+        taglib/taglib/matroska
         taglib/taglib/mp4
         taglib/taglib/ogg/vorbis
         taglib/taglib/ogg/opus
