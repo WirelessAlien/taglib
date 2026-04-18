@@ -1,8 +1,9 @@
 [versions]
-agp = "9.1.1"
+agp = "8.7.3"
+kotlin = "2.1.0"
 
-rules = "1.7.0"
-runner = "1.7.0"
+rules = "1.6.1"
+runner = "1.6.2"
 
 [libraries]
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
@@ -10,3 +11,4 @@ androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
