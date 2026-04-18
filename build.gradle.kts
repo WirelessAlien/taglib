@@ -56,7 +56,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.WirelessAlien"
                 artifactId = "taglib"
-                version = "1.0.6"
+                version = "1.0.7"
             }
         }
     }
